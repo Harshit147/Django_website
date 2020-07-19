@@ -1,12 +1,21 @@
 {% extends 'shop/Basic.html' %}
 
 {% block title%} Register{% endblock %}
+{%load crispy_forms_tags%}
 {% block body %}
 
+
+
+<div class="container my-3">
     <form method="POST" class="form-group">
         {%csrf_token%}
-        {{form}}
+        {{ form|crispy }}
+        <h5 style="text-align:center;">
         <button type="submit" class="btn btn-success">SignUp</button>
+        </h5>
     </form>
+</div>
+
+
 {%endblock%}
 
