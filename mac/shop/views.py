@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from .form import RegisterForm
 # Create your views here.
 from django.http import HttpResponse
 from .models import Product,Contact
@@ -50,3 +51,14 @@ def tracker(request):
     return render(request, 'shop/tracker.html')
 def search(request):
     return render(request, 'shop/search.html')
+def register(response):
+    if response.method =="POST":
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+        return redirect("/shop")
+    else:
+        form = RegisterForm()
+
+
+    return render(response,'shop/register.html', {"form": form})
