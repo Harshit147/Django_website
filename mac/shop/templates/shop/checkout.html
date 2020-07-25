@@ -82,7 +82,7 @@ if ($.isEmptyObject(cart)) {
 document.getElementById('cart').innerHTML = sum;
 $('#itemsJson').val(JSON.stringify(cart));
 {% if thank %}
-alert('Thanks for ordering with us. Your order is is {{id}}. Use it to track your order using our order tracker');
+alert('Thanks for shopping with us. Your order is {{id}}. Use it to track your order using our order tracker');
 localStorage.clear();
 document.location = "/shop";
 {% endif %}

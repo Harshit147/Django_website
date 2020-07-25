@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from .form import RegisterForm
 # Create your views here.
 from django.http import HttpResponse
-from .models import Product,Contact
+from .models import Product,Contact , Orders
 from math import ceil
 # import the logging library
 import logging
@@ -46,6 +46,19 @@ def productView(request,myid):
 
     return render(request, 'shop/prodView.html', {'product': product[0]})
 def checkout(request):
+    if request.method == "POST":
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        address = request.POST.get('address', '') +""+ request.POST.get('address', '')
+        city = request.POST.get('city', '')
+        state = request.POST.get('state', '')
+        zip_code = request.POST.get('zip_code', '')
+        phone = request.POST.get('phone', '')
+        order = Orders(name=name, email=email, phone=phone, address=address, city=city, zip_code=zip_code)
+        order.save()
+        thank = True
+        id = order.Order_Id
+        return render(request, 'shop/checkout.html',{'thank':thank,'id':id})
     return render(request, 'shop/checkout.html')
 def tracker(request):
     return render(request, 'shop/tracker.html')
