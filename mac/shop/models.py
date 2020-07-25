@@ -20,5 +20,15 @@ class Contact(models.Model):
     desc = models.CharField(max_length=500, default="")
 
 
+
     def __str__(self):
         return self.name
+class Orders(models.Model):
+    Order_Id =models.AutoField(primary_key=True)
+    items_json = models.CharField(max_length=2000)
+    name = models.CharField(max_length=90)
+    email = models.CharField(max_length=90)
+    address = models.CharField(max_length=110)
+    city = models.CharField(max_length=110)
+    state = models.CharField(max_length=100)
+    zip_code= models.CharField(max_length=10)
