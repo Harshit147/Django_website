@@ -5,6 +5,7 @@ from .form import RegisterForm
 from django.http import HttpResponse
 from .models import Product,Contact , Orders
 from math import ceil
+import json
 # import the logging library
 import logging
 
@@ -61,6 +62,23 @@ def checkout(request):
         return render(request, 'shop/checkout.html',{'thank':thank,'id':id})
     return render(request, 'shop/checkout.html')
 def tracker(request):
+    if request.method == "POST":
+        orderId = request.POST.get('orderId', '')
+        email = request.POST.get('email', '')
+        try:
+            order = Orders.objects.filter(order_id=orderId, email=email)
+            if len(order) > 0:
+                update = OrderUpdate.objects.filter(order_id=orderId)
+                updates = []
+                for item in update:
+                    updates.append({'text': item.update_desc, 'time': item.timestamp})
+                    response = json.dumps(updates, default=str)
+                return HttpResponse(response)
+            else:
+                return HttpResponse('{}')
+        except Exception as e:
+            return HttpResponse('{}')
+
     return render(request, 'shop/tracker.html')
 def search(request):
     return render(request, 'shop/search.html')
