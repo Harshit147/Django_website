@@ -9,6 +9,7 @@ urlpatterns = [
     path("tracker/",views.tracker,name="tracker"),
     path("search/",views.search,name="search"),
     path("register/",views.register,name="register"),
+    path("handlerequest/", views.handlerequest, name="HandleRequest"),
     path("", include("django.contrib.auth.urls")),
 
 ]
