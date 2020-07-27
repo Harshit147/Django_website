@@ -5,7 +5,7 @@ from .form import RegisterForm
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from Paytm import Checksum
-from .models import Product,Contact , Orders , OrderUpdate
+from .models import Product, Contact, Orders, OrderUpdate
 from math import ceil
 import json
 # import the logging library
@@ -66,7 +66,7 @@ def checkout(request):
         update.save()
         thank = True
         id = order.order_id
-        # return render(request, 'shop/checkout.html', {'thank':thank, 'id': id})
+         #return render(request, 'shop/checkout.html', {'thank':thank, 'id': id})
         # Request paytm to transfer the amount to your account after payment by user
         param_dict = {
 
