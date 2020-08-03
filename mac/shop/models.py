@@ -43,3 +43,4 @@ class OrderUpdate(models.Model):
 
     def __str__(self):
         return self.update_desc[0:7] + "..."
+    #submiting this project on 31/july /2020
